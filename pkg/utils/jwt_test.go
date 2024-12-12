@@ -3,13 +3,14 @@ package utils
 import (
 	"fmt"
 	"gin-api/internal/model"
-	"github.com/google/uuid"
+	"github.com/gofrs/uuid/v5"
 	"testing"
 )
 
 func TestJwt(t *testing.T) {
+	uid, _ := uuid.NewV4()
 	user := model.User{
-		UUID:        uuid.New(),
+		UUID:        uid,
 		Username:    "19129211344",
 		Password:    "123456789",
 		NickName:    "小马",
@@ -20,5 +21,6 @@ func TestJwt(t *testing.T) {
 	}
 	token, _, _ := LoginToken(user)
 
+	GetUserId()
 	fmt.Println(token)
 }

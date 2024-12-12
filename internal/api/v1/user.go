@@ -2,9 +2,10 @@ package v1
 
 import (
 	systemReq "gin-api/internal/model/common/request"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
 type UserApi struct{}

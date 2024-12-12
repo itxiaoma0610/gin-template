@@ -1,8 +1,6 @@
 package v1
 
-import (
-	"gin-api/internal/service"
-)
+import "gin-api/internal/service"
 
 type ApiGroup struct {
 	UserApi

@@ -1,8 +1,6 @@
 package core
 
-import (
-	"gin-api/internal/initialize"
-)
+import "gin-api/internal/initialize"
 
 type server interface {
 	ListenAndServe() error

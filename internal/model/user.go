@@ -2,7 +2,7 @@ package model
 
 import (
 	"gin-api/internal/global"
-	"github.com/google/uuid"
+	"github.com/gofrs/uuid/v5"
 )
 
 type Login interface {

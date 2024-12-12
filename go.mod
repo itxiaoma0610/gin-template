@@ -1,13 +1,15 @@
-module GIN-API
+module gin-api
 
-go 1.22.5
+go 1.22.0
+
+toolchain go1.22.9
 
 require (
 	github.com/flipped-aurora/gin-vue-admin/server v0.0.0-20241208131721-283143e1bf59
 	github.com/fsnotify/fsnotify v1.8.0
 	github.com/gin-gonic/gin v1.10.0
+	github.com/gofrs/uuid/v5 v5.3.0
 	github.com/golang-jwt/jwt/v4 v4.5.1
-	github.com/google/uuid v1.6.0
 	github.com/redis/go-redis/v9 v9.7.0
 	github.com/spf13/viper v1.19.0
 	go.uber.org/zap v1.27.0
@@ -46,6 +48,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
 	github.com/qiniu/qmgo v1.1.8 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/sagikazarmark/locafero v0.6.0 // indirect

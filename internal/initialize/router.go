@@ -4,8 +4,9 @@ import (
 	"gin-api/internal/global"
 	"gin-api/internal/middleware"
 	"gin-api/internal/router"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 // 初始化总路由
