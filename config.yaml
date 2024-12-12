@@ -1,0 +1,20 @@
+server:
+  host: "localhost"
+  port: "8080"
+
+mysql:
+  host: 192.168.0.252
+  port: 3306
+  user: root
+  password: fhsdkfhjjweuin234SDA
+  db: gcode_db_for_dev
+
+redis:
+  host: 118.89.66.104
+  port: 6379
+  pass: rootpassword
+  type: node
+  db: 0
+
+system:
+  router-prefix: "/api"
