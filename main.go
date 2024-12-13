@@ -1,21 +1,16 @@
 package main
 
 import (
-	"fmt"
-	"gin-api/config"
-	"gin-api/internal/core"
-	"gin-api/internal/global"
+	"gin-api/core"
+	"gin-api/global"
+	"gin-api/initialize"
 )
 
 func main() {
-	global.AIG_VP = core.Viper()
-	mysql := config.Mysql{
-		Host:     "123",
-		Port:     123,
-		User:     "123",
-		Password: "123",
-		DB:       "123",
-	}
-	fmt.Println(mysql.Dsn())
+	global.VP = core.Viper()
+	global.LOG = core.Zap()
+	global.DB = initialize.InitGorm()
+	initialize.Redis()
+	initialize.OtherInit()
 	core.RunServer()
 }

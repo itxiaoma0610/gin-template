@@ -2,8 +2,9 @@ package utils
 
 import (
 	"errors"
-	"gin-api/internal/global"
-	"gin-api/internal/model/common/request"
+	"fmt"
+	"gin-api/global"
+	"gin-api/model/common/request"
 	"time"
 
 	jwt "github.com/golang-jwt/jwt/v4"
@@ -22,13 +23,14 @@ var (
 
 func NewJWT() *JWT {
 	return &JWT{
-		[]byte(global.AIG_CONFIG.JWT.SigningKey),
+		[]byte(global.CONFIG.JWT.SigningKey),
 	}
 }
 
 func (j *JWT) CreateClaims(baseClaims request.BaseClaims) request.CustomClaims {
-	bf, _ := ParseDuration(global.AIG_CONFIG.JWT.BufferTime)
-	ep, _ := ParseDuration(global.AIG_CONFIG.JWT.ExpiresTime)
+	bf, _ := ParseDuration(global.CONFIG.JWT.BufferTime)
+	ep, _ := ParseDuration(global.CONFIG.JWT.ExpiresTime)
+	fmt.Println("过期时间", ep)
 	claims := request.CustomClaims{
 		BaseClaims: baseClaims,
 		BufferTime: int64(bf / time.Second),
@@ -36,7 +38,7 @@ func (j *JWT) CreateClaims(baseClaims request.BaseClaims) request.CustomClaims {
 			Audience:  jwt.ClaimStrings{"GVA"},                   // 受众
 			NotBefore: jwt.NewNumericDate(time.Now().Add(-1000)), // 签名生效时间
 			ExpiresAt: jwt.NewNumericDate(time.Now().Add(ep)),    // 过期时间 7天  配置文件
-			Issuer:    global.AIG_CONFIG.JWT.Issuer,              // token签名的发行者
+			Issuer:    global.CONFIG.JWT.Issuer,                  // token签名的发行者
 		},
 	}
 	return claims
@@ -49,7 +51,7 @@ func (j *JWT) CreateToken(claims request.CustomClaims) (string, error) {
 }
 
 func (j *JWT) CreateTokenByOldToken(oldToken string, claims request.CustomClaims) (string, error) {
-	v, err, _ := global.GVA_Concurrency_Control.Do("JWT:"+oldToken, func() (interface{}, error) {
+	v, err, _ := global.Concurrency_Control.Do("JWT:"+oldToken, func() (interface{}, error) {
 		return j.CreateToken(claims)
 	})
 	return v.(string), err

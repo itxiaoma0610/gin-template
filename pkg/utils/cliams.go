@@ -1,17 +1,16 @@
 package utils
 
 import (
-	"gin-api/internal/global"
-	"gin-api/internal/model"
-	systemReq "gin-api/internal/model/common/request"
-	"github.com/flipped-aurora/gin-vue-admin/server/model/system/request"
+	"gin-api/global"
+	"gin-api/model"
+	systemReq "gin-api/model/common/request"
 	"github.com/gin-gonic/gin"
 	"github.com/gofrs/uuid/v5"
 	"strings"
 )
 
-func LoginToken(user model.User) (token string, claims systemReq.CustomClaims, err error) {
-	j := &JWT{SigningKey: []byte(global.AIG_CONFIG.JWT.SigningKey)} // 唯一签名
+func LoginToken(user *model.User) (token string, claims systemReq.CustomClaims, err error) {
+	j := &JWT{SigningKey: []byte(global.CONFIG.JWT.SigningKey)} // 唯一签名
 	claims = j.CreateClaims(systemReq.BaseClaims{
 		UUID:        user.GetUUID(),
 		ID:          user.GetUserId(),
@@ -38,7 +37,7 @@ func GetClaims(c *gin.Context) (*systemReq.CustomClaims, error) {
 	j := NewJWT()
 	claims, err := j.ParseToken(token)
 	if err != nil {
-		global.AIG_LOG.Error("从Gin的Context中获取从jwt解析信息失败")
+		global.LOG.Error("从Gin的Context中获取从jwt解析信息失败")
 	}
 	return claims, err
 }
@@ -52,7 +51,7 @@ func GetUserId(c *gin.Context) uint {
 			return cl.BaseClaims.ID
 		}
 	} else {
-		waitUse := claims.(*request.CustomClaims)
+		waitUse := claims.(*systemReq.CustomClaims)
 		return waitUse.BaseClaims.ID
 	}
 }

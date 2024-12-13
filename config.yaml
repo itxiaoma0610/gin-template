@@ -2,6 +2,25 @@ server:
   host: "localhost"
   port: "8080"
 
+# jwt configuration
+jwt:
+  signing-key: qmPlus
+  expires-time: 7d
+  buffer-time: 1d
+  issuer: qmPlus
+
+# zap logger configuration
+zap:
+  level: info
+  format: console
+  prefix: "[github.com/MQTT]"
+  director: log
+  show-line: true  # 是否显示行号
+  encode-level: LowercaseColorLevelEncoder # 将日志级别以小写和带颜色的形式输出
+  stacktrace-key: stacktrace
+  log-in-console: true # 是否将日志输出到控制台
+  retention-day: 3  # 日志保留天数
+# mysql configuration
 mysql:
   host: 192.168.0.252
   port: 3306
@@ -18,3 +37,5 @@ redis:
 
 system:
   router-prefix: "/api"
+  aes: z1dkSD8cm6oHMpP1OIAaQr9N9oYwFO8=
+  addr: 8888

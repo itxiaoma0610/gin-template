@@ -5,6 +5,7 @@ import (
 	"crypto/aes"
 	"encoding/base64"
 	"errors"
+	"gin-api/global"
 )
 
 var Encrypt *Encryption
@@ -14,9 +15,11 @@ type Encryption struct {
 	key string
 }
 
-func init() {
+func InitEncryption() {
 	Encrypt = NewEncryption()
+	Encrypt.SetKey(global.CONFIG.System.AES)
 }
+
 func NewEncryption() *Encryption {
 	return &Encryption{}
 }
