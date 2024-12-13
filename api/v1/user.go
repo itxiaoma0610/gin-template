@@ -4,9 +4,10 @@ import (
 	"gin-api/model"
 	systemReq "gin-api/model/common/request"
 	"gin-api/pkg/e"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
 type UserApi struct{}
@@ -30,6 +31,22 @@ func (u *UserApi) LoginWithCode(c *gin.Context) {
 	}
 }
 func (u *UserApi) VerifyCode(c *gin.Context) {
+	var l systemReq.VerificationMobile
+	if err := c.ShouldBind(&l); err == nil {
+		if len(strings.TrimSpace(l.Mobile)) != 11 {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"status": e.ValidatorPhone,
+				"error":  e.GetMsg(e.ValidatorPhone)})
+			return
+		}
+		res := UserService.VerificationCode(c, l.Mobile)
+		c.JSON(http.StatusOK, res)
+	} else {
+		c.JSON(http.StatusBadRequest, err)
+	}
+}
+
+func (u *UserApi) UserInfo(c *gin.Context) {
 	var l systemReq.VerificationMobile
 	if err := c.ShouldBind(&l); err == nil {
 		if len(strings.TrimSpace(l.Mobile)) != 11 {

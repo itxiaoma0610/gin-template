@@ -39,3 +39,7 @@ system:
   router-prefix: "/api"
   aes: z1dkSD8cm6oHMpP1OIAaQr9N9oYwFO8=
   addr: 8888
+
+mqtt:
+  broker: 118.89.66.104
+  port: 1883
