@@ -1,9 +1,0 @@
-2024-12-13 16:25:48.086	info	D:/goland/mqtt/initialize/redis.go:22	redis connect ping response:	{"name": "118.89.66.104", "pong": "PONG"}
-2024-12-13 16:28:18.345	info	D:/goland/mqtt/initialize/redis.go:22	redis connect ping response:	{"name": "118.89.66.104", "pong": "PONG"}
-2024-12-13 16:30:33.902	info	D:/goland/mqtt/initialize/redis.go:22	redis connect ping response:	{"name": "118.89.66.104", "pong": "PONG"}
-2024-12-13 16:30:33.911	info	D:/goland/mqtt/core/server.go:18	server run success on 	{"address": ":8888"}
-2024-12-13 16:31:02.727	info	D:/goland/mqtt/service/user.go:107	getActivationCache mobile error :	{"error": "redis: nil"}
-2024-12-13 16:32:21.954	info	D:/goland/mqtt/initialize/redis.go:22	redis connect ping response:	{"name": "118.89.66.104", "pong": "PONG"}
-2024-12-13 16:32:21.966	info	D:/goland/mqtt/core/server.go:18	server run success on 	{"address": ":8888"}
-2024-12-13 17:15:37.493	info	D:/goland/mqtt/initialize/redis.go:22	redis connect ping response:	{"name": "118.89.66.104", "pong": "PONG"}
-2024-12-13 17:15:37.502	info	D:/goland/mqtt/core/server.go:18	server run success on 	{"address": ":8888"}
